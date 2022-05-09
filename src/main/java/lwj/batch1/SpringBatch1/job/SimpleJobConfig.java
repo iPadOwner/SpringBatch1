@@ -21,6 +21,7 @@ public class SimpleJobConfig {
     public Job simpleJob(){
         return jobBuilderFactory.get("simpleJob")
                 .start(simpleStep1())
+                .start(simpleStep3())
                 .start(simpleStep2())
                 .build();
     }
@@ -40,6 +41,16 @@ public class SimpleJobConfig {
         return stepBuilderFactory.get("simpleStep1")
                 .tasklet((contribution, chunkContext) -> {
                     log.info(">>>>> This is Step2");
+                    return RepeatStatus.FINISHED;
+                })
+                .build();
+    }
+
+    @Bean
+    public Step simpleStep3(){
+        return stepBuilderFactory.get("simpleStep1")
+                .tasklet((contribution, chunkContext) -> {
+                    log.info(">>>>> This is Step3");
                     return RepeatStatus.FINISHED;
                 })
                 .build();
