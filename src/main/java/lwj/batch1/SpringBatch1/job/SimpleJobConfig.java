@@ -21,7 +21,7 @@ public class SimpleJobConfig {
     public Job simpleJob(){
         return jobBuilderFactory.get("simpleJob")
                 .start(simpleStep1())
-                .start(simpleStep3())
+//                .start(simpleStep3())
                 .start(simpleStep2())
                 .build();
     }
